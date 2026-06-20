@@ -1,0 +1,19 @@
+# IDE
+.idea/
+.vscode/
+
+# Claude Code
+.claude/
+
+# Maven build output
+target/
+*.lst
+
+# Maven wrapper (自動生成)
+.mvn/
+mvnw
+mvnw.cmd
+
+# Empty directory placeholders
+.gitkeep
+.keep
