@@ -8,6 +8,7 @@ erDiagram
         string id
         string name
         string type
+        int weight
     }
     task_log {
         string id
@@ -22,6 +23,7 @@ erDiagram
     }
     load_balance {
         string id
+        int weighted_points
         float member_ratio
     }
     improvement_action {
@@ -38,7 +40,8 @@ erDiagram
     family_member ||--o{ task_log : "performs"
     task_log }o--|| task_category : "categorized_as"
     weekly_summary ||--o{ task_log : "aggregates"
-    weekly_summary ||--|| load_balance : "calculates"
+    weekly_summary ||--o{ load_balance : "calculates"
+    load_balance }o--|| family_member : "belongs_to"
     retrospective ||--o{ weekly_summary : "reviews"
     retrospective ||--o{ improvement_action : "decides"
     retrospective }o--o{ retrospective : "compares_with"
@@ -57,6 +60,7 @@ erDiagram
         string id
         string 名前
         string 種別
+        int 重み
     }
     家事育児記録 {
         string id
@@ -71,6 +75,7 @@ erDiagram
     }
     負荷バランス {
         string id
+        int 重みポイント合計
         float メンバー別割合
     }
     改善アクション {
@@ -87,7 +92,8 @@ erDiagram
     家族メンバー ||--o{ 家事育児記録 : "実施する"
     家事育児記録 }o--|| 家事育児カテゴリ : "分類される"
     週次実績 ||--o{ 家事育児記録 : "集計する"
-    週次実績 ||--|| 負荷バランス : "算出する"
+    週次実績 ||--o{ 負荷バランス : "算出する"
+    負荷バランス }o--|| 家族メンバー : "対象メンバー"
     振り返り ||--o{ 週次実績 : "参照する"
     振り返り ||--o{ 改善アクション : "決定する"
     振り返り }o--o{ 振り返り : "前回と比較する"
